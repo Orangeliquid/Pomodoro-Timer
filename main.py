@@ -15,9 +15,11 @@ class Constants:
 
 class PomodoroTimer:
     def __init__(self, window_setup):
+        # Initializing the PomodoroTimer class with the main Tkinter window
         self.window = window_setup
         self.reps = 0
         self.timer = None
+        # Initializing widget variables
         self.timer_label = None
         self.canvas = None
         self.tomato_img = None
@@ -27,6 +29,7 @@ class PomodoroTimer:
         self.reset_button = None
 
     def reset_timer(self):
+        # Resetting the timer and related UI elements
         self.window.after_cancel(self.timer)
         self.timer_label.config(text="Timer", bg=Constants.YELLOW, fg=Constants.GREEN, highlightthickness=0, font=(Constants.FONT_NAME, 35, "bold"))
         self.checkmarks.config(text="")
@@ -34,6 +37,7 @@ class PomodoroTimer:
         self.reps = 0
 
     def start_timer(self):
+        # Starting the timer based on work, short break, or long break
         self.reps += 1
 
         work_sec = Constants.WORK_MIN * 60
@@ -51,6 +55,7 @@ class PomodoroTimer:
             self.timer_label.config(text="Work", fg=Constants.GREEN, highlightthickness=0, font=(Constants.FONT_NAME, 35, "bold"))
 
     def count_down(self, count):
+        # Countdown mechanism for updating the timer display
         count_min = math.floor(count / 60)
         count_sec = count % 60
         if count_sec < 10:
@@ -68,6 +73,7 @@ class PomodoroTimer:
             self.checkmarks.config(text=marks)
 
     def ui_setup(self):
+        # Setting up the UI elements
         self.timer_label = Label(text="Timer", bg=Constants.YELLOW, fg=Constants.GREEN, highlightthickness=0, font=(Constants.FONT_NAME, 35, "bold"))
         self.timer_label.grid(column=2, row=1)
 
@@ -88,11 +94,14 @@ class PomodoroTimer:
 
 
 if __name__ == "__main__":
+    # Creating the main Tkinter window
     window = Tk()
     window.title("Pomodoro")
     window.config(padx=100, pady=50, bg=Constants.YELLOW)
 
+    # Creating an instance of the PomodoroTimer class and setting up the UI
     pomodoro_timer = PomodoroTimer(window)
     pomodoro_timer.ui_setup()
 
+    # Running the Tkinter event loop
     window.mainloop()
