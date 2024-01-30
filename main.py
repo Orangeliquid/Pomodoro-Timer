@@ -31,7 +31,8 @@ class PomodoroTimer:
     def reset_timer(self):
         # Resetting the timer and related UI elements
         self.window.after_cancel(self.timer)
-        self.timer_label.config(text="Timer", bg=Constants.YELLOW, fg=Constants.GREEN, highlightthickness=0, font=(Constants.FONT_NAME, 35, "bold"))
+        self.timer_label.config(text="Timer", bg=Constants.YELLOW, fg=Constants.GREEN, highlightthickness=0,
+                                font=(Constants.FONT_NAME, 35, "bold"))
         self.checkmarks.config(text="")
         self.canvas.itemconfig(self.timer_text, text="00:00")
         self.reps = 0
@@ -46,13 +47,16 @@ class PomodoroTimer:
 
         if self.reps % 8 == 0:
             self.count_down(long_break_sec)
-            self.timer_label.config(text="Break", fg=Constants.RED, highlightthickness=0, font=(Constants.FONT_NAME, 35, "bold"))
+            self.timer_label.config(text="Break", fg=Constants.RED, highlightthickness=0,
+                                    font=(Constants.FONT_NAME, 35, "bold"))
         elif self.reps % 2 == 0:
             self.count_down(short_break_sec)
-            self.timer_label.config(text="Break", fg=Constants.PINK, highlightthickness=0, font=(Constants.FONT_NAME, 35, "bold"))
+            self.timer_label.config(text="Break", fg=Constants.PINK, highlightthickness=0,
+                                    font=(Constants.FONT_NAME, 35, "bold"))
         else:
             self.count_down(work_sec)
-            self.timer_label.config(text="Work", fg=Constants.GREEN, highlightthickness=0, font=(Constants.FONT_NAME, 35, "bold"))
+            self.timer_label.config(text="Work", fg=Constants.GREEN, highlightthickness=0,
+                                    font=(Constants.FONT_NAME, 35, "bold"))
 
     def count_down(self, count):
         # Countdown mechanism for updating the timer display
@@ -74,22 +78,26 @@ class PomodoroTimer:
 
     def ui_setup(self):
         # Setting up the UI elements
-        self.timer_label = Label(text="Timer", bg=Constants.YELLOW, fg=Constants.GREEN, highlightthickness=0, font=(Constants.FONT_NAME, 35, "bold"))
+        self.timer_label = Label(text="Timer", bg=Constants.YELLOW, fg=Constants.GREEN, highlightthickness=0,
+                                 font=(Constants.FONT_NAME, 35, "bold"))
         self.timer_label.grid(column=2, row=1)
 
         self.canvas = Canvas(width=200, height=224, bg=Constants.YELLOW, highlightthickness=0)
         self.tomato_img = PhotoImage(file="tomato.png")
         self.canvas.create_image(100, 112, image=self.tomato_img)
-        self.timer_text = self.canvas.create_text(100, 130, text="00:00", fill="white", font=(Constants.FONT_NAME, 35, "bold"))
+        self.timer_text = self.canvas.create_text(100, 130, text="00:00", fill="white",
+                                                  font=(Constants.FONT_NAME, 35, "bold"))
         self.canvas.grid(column=2, row=2)
 
         self.checkmarks = Label(bg=Constants.YELLOW, fg=Constants.GREEN, font=(Constants.FONT_NAME, 10, "bold"))
         self.checkmarks.grid(column=2, row=4)
 
-        self.start_button = Button(text="Start", highlightthickness=0, command=self.start_timer, font=(Constants.FONT_NAME, 10, "bold"))
+        self.start_button = Button(text="Start", highlightthickness=0, command=self.start_timer,
+                                   font=(Constants.FONT_NAME, 10, "bold"))
         self.start_button.grid(column=1, row=3)
 
-        self.reset_button = Button(text="Reset", highlightthickness=0, command=self.reset_timer, font=(Constants.FONT_NAME, 10, "bold"))
+        self.reset_button = Button(text="Reset", highlightthickness=0, command=self.reset_timer,
+                                   font=(Constants.FONT_NAME, 10, "bold"))
         self.reset_button.grid(column=3, row=3)
 
 
